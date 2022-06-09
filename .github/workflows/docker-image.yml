@@ -1,9 +1,7 @@
-name: Docker Image CI
+name: Build & Push
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
     branches: [ "master" ]
 
 jobs:
@@ -13,6 +11,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag mitjy/postgres-backup-s3:$(date +%s)
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v3.0.0
